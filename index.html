@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rabattberechnung</title>
+    <script type="text/javascript">
+
+      function fRabattberechnung() {
+        var vMenge = document.getElementById("idMenge").value;
+        var vPreis = 12.4;
+        var vRabatt;
+        var vBrutto;
+        var vGesamtpreis;
+        var vAusgabe = "";
+
+        if ((vMenge>=8)&& (vMenge<12)) {
+          vRabatt = 5;
+        } else if (vMenge>=12){
+          vRabatt = 12;
+        }  else {
+          vRabatt = 0;
+        }
+
+        vAusgabe = vAusgabe + "Sie haben " + vMenge + " Flaschen bestellt!<br>";
+        vAusgabe = vAusgabe + "Sie bekommen " + vRabatt + " % Rabatt.<br>";
+
+        vBrutto = vPreis * vMenge;
+        vRabatt = vBrutto * (vRabatt/100);
+        //vGesamtpreis = vBrutto - vRabatt;
+        vGesamtpreis = Math.round ((vBrutto-vRabatt)*100)/100;
+        vBrutto = vBrutto.toFixed(2);
+        vRabatt = vRabatt.toFixed(2);
+
+
+        vAusgabe = vAusgabe + "Brutto: € " + vBrutto;
+        vAusgabe = vAusgabe + " - " + "Rabatt: € " + vRabatt;
+        vAusgabe = vAusgabe + " = € " + vGesamtpreis;
+
+        document.getElementById('idAusgabe').innerHTML = vAusgabe;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Rabattberechnung</h1>
+    Wie viele Flaschen á € 12,40 möchten Sie bestellen?<br></br>
+    Anzahl der Flaschen: <input id="idMenge" type="text" value="11">
+    <button onclick="fRabattberechnung();">Berechnen</button><br></br>
+    <div id="idAusgabe"></div>
+  </body>
+</html>
